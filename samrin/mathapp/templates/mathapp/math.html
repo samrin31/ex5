@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Power Calculation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 8px;
+            margin: 8px 0;
+            width: 200px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Calculate Power (P = I² × R)</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="current">Current (I in Amps):</label><br>
+        <input type="text" id="current" name="current" placeholder="Enter current"><br>
+
+        <label for="resistance">Resistance (R in Ohms):</label><br>
+        <input type="text" id="resistance" name="resistance" placeholder="Enter resistance"><br>
+
+        <input type="submit" value="Calculate Power">
+    </form>
+
+    {% if power %}
+        <div class="result">
+            Power = {{ power }} Watts
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error">
+            Error: {{ error }}
+        </div>
+    {% endif %}
+
+</body>
+</html>
+
+
